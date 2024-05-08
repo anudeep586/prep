@@ -22,3 +22,47 @@ class Solution:
 #when we are trying something like this first we should do like line 7 and line 8 thinking about the ground case and initialzing
 
 # for memoization use something like k=float("inf") when we are doing something like for i in coins(recursion)
+
+
+
+class Trie:
+
+    def __init__(self):
+        self.dic={}
+
+
+    def insert(self, word: str) -> None:
+        cur=self.dic
+
+        for letter in word: #it's all about playing with dictionary
+            if letter not in cur:
+                cur[letter]={} # here we are trying to add one dic
+            cur=cur[letter] #here one step further
+        cur['*']='' # end of text
+        
+
+    def search(self, word: str) -> bool:
+        cur=self.dic
+        for i in word:
+            if i not in cur:
+                return False
+            cur=cur[i]
+        if '*' not in cur: return False
+        return True
+        
+
+    def startsWith(self, prefix: str) -> bool:
+        cur=self.dic
+        for i in prefix:
+            if i not in cur:
+                return False
+            cur=cur[i]
+        return True
+        
+
+
+# Your Trie object will be instantiated and called as such:
+# obj = Trie()
+# obj.insert(word)
+# param_2 = obj.search(word)
+# param_3 = obj.startsWith(prefix)
