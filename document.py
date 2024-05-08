@@ -14,7 +14,7 @@ class Solution:
             k=float('inf')
             for i in coins:
                 if i<=amount:
-                    k=min(k,1+coin(amount-i))
+                    k=min(k,1+coin(amount-i)) #instead of p we are doing something like 1+ which means increasing len(arr)
             dic[amount]=k
             return dic[amount]
         self.result=coin(amount)
