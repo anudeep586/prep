@@ -62,7 +62,20 @@ class Trie:
 
 
 # Your Trie object will be instantiated and called as such:
+
+
+
+# instead of doing like stack add in between or , and
 # obj = Trie()
 # obj.insert(word)
 # param_2 = obj.search(word)
 # param_3 = obj.startsWith(prefix)
+
+found=dfs(word+board[i][j],visited,i-1,j,actualWord) or dfs(word+board[i][j],visited,i+1,j,actualWord) or dfs(word+board[i][j],visited,i,j-1,actualWord) or dfs(word+board[i][j],visited,i,j+1,actualWord)
+Not like
+dfs(word+board[i][j],visited,i-1,j,actualWord)
+dfs(word+board[i][j],visited,i+1,j,actualWord)
+dfs(word+board[i][j],visited,i,j-1,actualWord)
+dfs(word+board[i][j],visited,i,j+1,actualWord)
+
+
