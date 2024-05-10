@@ -77,5 +77,77 @@ dfs(word+board[i][j],visited,i-1,j,actualWord)
 dfs(word+board[i][j],visited,i+1,j,actualWord)
 dfs(word+board[i][j],visited,i,j-1,actualWord)
 dfs(word+board[i][j],visited,i,j+1,actualWord)
+OR
+directions = [(1,0),(0,1),(-1,0),(0,-1)]
+for x,y in directions:
+    if 0<=i+x<=rows-1 and 0<=j+y<=cols-1:
+        dfs(i+x,j+y,currWord+board[i+x][j+y],root.children[currLetter])
 
+
+
+
+class TrieNode:
+    
+    #This is one node of the big Trie that we're gonna make 
+    
+    def __init__(self):
+        self.children = {}  #This is the first level, all the starting letters basically
+        self.end = False    #This will be set to true for a child if that words exists in the Trie
+class Trie:
+    def __init__(self):
+        self.rootNode = TrieNode()      #Our root node for the main try
+
+    def insert(self, word):
+        
+        start = self.rootNode           #Basic insertion of words in Tries
+        for letter in word:
+            if letter not in start.children:
+                start.children[letter] = TrieNode()
+            start = start.children[letter]
+        start.end = True                #Notice this is actually start.children[letter] = True
+                                        #start.children[letter] will contain all the words which has a prefix up until that letter
+                                        #If start.children[letter].end is true it means the words exists
+    def getRoot(self):
+        return self.rootNode
+    
+
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        
+        def dfs(i, j, currWord, root):
+            currLetter = board[i][j]
+            
+            if currLetter not in root.children:             #End the dfs call if the remaining word is absent
+                return 
+            
+            board[i][j] = "*"                               #So that we do not visit the same letter in the matrix again
+            if root.children[currLetter].end:
+                output.add(currWord)                        #Should not return the dfs call, continue because [road,roadster]
+            
+            for x,y in directions:
+                if 0<=i+x<=rows-1 and 0<=j+y<=cols-1:
+                    dfs(i+x,j+y,currWord+board[i+x][j+y],root.children[currLetter])
+            
+            board[i][j] = currLetter                        #Restroring the letter in the Matrix
+        
+        rows = len(board)
+        cols = len(board[0])
+        
+        myTrie = Trie()
+        for word in words:                                  #Insertion of words into the tree
+            myTrie.insert(word)
+        
+        rootNode = myTrie.getRoot()
+
+        output = set()
+        
+        directions = [(1,0),(0,1),(-1,0),(0,-1)]
+        for i in range(rows):
+            for j in range(cols):
+                dfs(i,j,board[i][j],rootNode)
+            
+        return output
+        
+        
+  
 
