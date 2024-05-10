@@ -148,6 +148,64 @@ class Solution:
             
         return output
         
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        num = {
+            '1':'',
+            '2':'abc',
+            '3':'def',
+            '4':'ghi',
+            '5':'jkl',
+            '6':'mno',
+            '7':'pqrs',
+            '8':'tuv',
+            '9':'wxyz',
+        }
+        self.res=[]
+        if len(digits)==0:
+            return []
+        def dfs(i,p):
+            if len(p)==len(digits):
+                self.res.append(p)
+                return 
+            for k in num[digits[i]]:
+                dfs(i+1,p+k)
+            return
+        dfs(0,'')
+        print(self.res)
+        return self.res
+        
+# when we are storing the visited nodes then keep track of nodes like 
+
+k=float('inf') # before
+for i in coins:
+    if i<=amount:
+        k=min(k,1+coin(amount-i))# instead of p we are doing something like 1+ to know the path
+dic[amount]=k # after
+
+or 
+
+def dfs(i,p):
+    if len(p)==len(digits):
+        self.res.append(p)
+        return 
+    for k in num[digits[i]]:
+        dfs(i+1,p+k)
+    return
+
+or re-leave the nodes
+
+visited.add((i, j))  # Mark current cell as visited
+
+found = (dfs(board, word[1:], visited.copy(), i-1, j) or  # Explore up
+         dfs(board, word[1:], visited.copy(), i+1, j) or  # Explore down
+         dfs(board, word[1:], visited.copy(), i, j-1) or  # Explore left
+         dfs(board, word[1:], visited.copy(), i, j+1))  # Explore right
+
+visited.remove((i, j))
+
+
         
   
 
