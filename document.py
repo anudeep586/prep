@@ -224,6 +224,26 @@ class Solution:
 # first lets identify whether it is a 0/1 knapsack or something else
 # if it is like find longest or minimum then use something like 1+dfs()
 
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        dp={}
+        def helper(index,targetSum,s):
+            if (index,s) in dp:
+                return dp[(index,s)]
+            if index>len(nums)-1:
+                return False
+            if s==targetSum:
+                return True
+            if s>targetSum:
+                return False
+            dp[(index,s)]=helper(index+1,targetSum,s+nums[index]) or helper(index+1,targetSum,s)
+            return dp[(index,s)]
+        if sum(nums)%2!=0:
+            return False
+        return helper(0,sum(nums)//2,0)
+
+
         
   
 
