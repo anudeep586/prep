@@ -206,6 +206,23 @@ found = (dfs(board, word[1:], visited.copy(), i-1, j) or  # Explore up
 visited.remove((i, j))
 
 
+# maybe if we are thinking about the possibilities we need to do + or - or something else identifying whether it is 0/1 knapsack
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        dp={} #cache
+        def dfs(i,total):
+            if i==len(nums):
+                if total==target:
+                    return 1
+                else:
+                    return 0
+            if (i,total) in dp:
+                return dp[(i,total)]
+            dp[(i,total)]=dfs(i+1,total+nums[i])+dfs(i+1,total-nums[i]) # adding + because we need both possibilities
+            return dp[(i,total)]
+        return dfs(0,0)
+# first lets identify whether it is a 0/1 knapsack or something else
+
         
   
 
