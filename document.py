@@ -222,6 +222,7 @@ class Solution:
             return dp[(i,total)]
         return dfs(0,0)
 # first lets identify whether it is a 0/1 knapsack or something else
+# if it is like find longest or minimum then use something like 1+dfs()
 
         
   
