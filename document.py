@@ -243,6 +243,7 @@ class Solution:
             return False
         return helper(0,sum(nums)//2,0)
 
+# Re-exploring Cells in Different Paths: By removing the cell from visited after exploring all paths starting from it, the code allows for revisiting the same cell in different paths. For example, consider a cell with valid paths going both up and down. If visited is not removed, the function would only explore one direction, missing the other.
 
         
   
