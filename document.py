@@ -243,8 +243,31 @@ class Solution:
             return False
         return helper(0,sum(nums)//2,0)
 
-# Re-exploring Cells in Different Paths: By removing the cell from visited after exploring all paths starting from it, the code allows for revisiting the same cell in different paths. For example, consider a cell with valid paths going both up and down. If visited is not removed, the function would only explore one direction, missing the other.
 
-        
+class Solution:
+    def getMaximumGold(self, grid: List[List[int]]) -> int:
+        directions=[(0,1),(1,0),(-1,0),(0,-1)]
+        self.t=float('-inf')
+        def path(i,j,total):
+            self.t=max(self.t,total)
+            if i<0 or j<0 or i>len(grid)-1 or j>len(grid[0])-1:
+                return 0
+            if (i,j) in visited:
+                return 1
+            if grid[i][j]==0:
+                return 0
+            visited.add((i,j))
+            max_path=float('-inf')
+            for k,l in directions:
+                path(i+k,j+l,total+grid[i][j])
+                # Re-exploring Cells in Different Paths: By removing the cell from visited after exploring all paths starting from it, the code allows for revisiting the same cell in different paths. For example, consider a cell with valid paths going both up and down. If visited is not removed, the function would only explore one direction, missing the other.
+            visited.remove((i,j))
+            return self.t
+        visited=set()
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                path(i,j,0)
+                visited=set()
+        return self.t
   
 
