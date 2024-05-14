@@ -280,6 +280,25 @@ class Solution:
             k=targetSum(i+1,total+nums[i])+targetSum(i+1,total-nums[i])  #unique way fo doing it remember if it is including all the values but different symbols like [-1,1,-1,1,1] or [1,1,1,-1,-1] to the target sum nice
             return k
         return targetSum(0,0)
-            
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        def dfs(p,q):
+            if p or q:
+                if (p and not q) or (q and not p):
+                    return False
+                if p.val==q.val:
+                    return dfs(p.left,q.left) and dfs(p.right,q.right)
+                else:
+                    return False
+            else:
+                return True
+        return dfs(p,q)
   
 
