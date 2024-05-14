@@ -11,7 +11,7 @@ class Solution:
                 return dic[amount]
             k=float('inf')
             for i in coins:
-                if i<=amount:
+                if i<=amount: #always keep a condition after for loop it is good actually trust me
                     k=min(k,1+coin(amount-i))# instead of p we are doing something like 1+ to know the path
             dic[amount]=k
             return dic[amount]
