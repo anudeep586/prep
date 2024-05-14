@@ -269,5 +269,17 @@ class Solution:
                 path(i,j,0)
                 visited=set()
         return self.t
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        @cache
+        def targetSum(i,total):
+            if i==len(nums) and total==target:
+                return 1
+            elif i>=len(nums):
+                return 0
+            k=targetSum(i+1,total+nums[i])+targetSum(i+1,total-nums[i])  #unique way fo doing it remember if it is including all the values but different symbols like [-1,1,-1,1,1] or [1,1,1,-1,-1] to the target sum nice
+            return k
+        return targetSum(0,0)
+            
   
 
