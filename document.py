@@ -302,5 +302,20 @@ class Solution:
             else:
                 return True
         return dfs(p,q)
+
+
+#important in finding max safest path may15th leetcode
+# Grid Initialization and Multi-source BFS:
+
+# Initial grid:
+# 1 0 0
+# 0 0 0
+# 0 0 1
+# Distance Calculation (Multi-source BFS):
+
+# Distance grid after BFS:
+# 0 1 2
+# 1 2 1
+# 2 1 0
   
 
