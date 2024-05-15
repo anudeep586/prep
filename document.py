@@ -1,3 +1,5 @@
+#heap when you think heap think about insert only necessary k values in it and pop and do it don't insert all and do it. always think about heap and hashset or map
+
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         self.result=float('inf')
