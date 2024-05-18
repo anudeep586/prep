@@ -317,5 +317,22 @@ class Solution:
 # 0 1 2
 # 1 2 1
 # 2 1 0
+
+
+#finding subarrays sum =k or not we should always plus the prefizsum and check prefixsum-k in d and remainig you will know
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        prefixsum=c=0
+        d=dict()
+        d[0]=1 #For the condition when prefixsum = k
+        for i in nums:
+            prefixsum+=i
+            if prefixsum-k in d:
+                c+=d[prefixsum-k]
+            if prefixsum in d:
+                d[prefixsum]+=1
+            else:
+                d[prefixsum]=1
+        return c                
   
 
