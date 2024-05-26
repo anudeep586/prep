@@ -317,7 +317,10 @@ class Solution:
 # 0 1 2
 # 1 2 1
 # 2 1 0
-
+# [[3, 2, 1, 0], 
+#  [2, 3, 2, 1], 
+#  [1, 2, 3, 2], 
+#  [0, 1, 2, 3]]
 
 #finding subarrays sum =k or not we should always plus the prefizsum and check prefixsum-k in d and remainig you will know
 class Solution:
@@ -355,4 +358,29 @@ class Solution:
             dp[index] = ans1
             return ans1
         return recursion(0)
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        directions=[(1,0),(0,1)]
+        dp={}
+        def uniquePaths(i,j,visited):
+            if (i,j) in dp:
+                return dp[i,j]
+            if i==m-1 and j==n-1:
+                return 1
+            if i>=m or j>=n:
+                return 0
+            k=0
+            for r,c in directions:
+                if 0<=i+r<m and 0<=j+c<n and (i+r,j+c) not in visited:
+                    visited.add((i+r,j+c)) # this is very important we are adding visited like this and removing afterthat because (0,0) already exists and it will satrt from there
+                    k+=uniquePaths(i+r,j+c,visited)
+                    visited.remove((i+r,j+c))
+            dp[(i,j)]=k
+            return k
+        
+        return uniquePaths(0,0,set())
+
+            
+
 
