@@ -336,3 +336,23 @@ class Solution:
         return c                
   
 
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        n = len(s)
+        dp = [-1 for _ in range(n+1)]
+        def recursion(index):
+            if(index == n):
+                return 1
+            if(s[index] == '0'):
+                return 0
+            if(index == n-1 ):
+                return 1
+            if dp[index] != -1:
+                return dp[index]
+            ans1 = recursion(index+1) # we can also do something like this where here in this case formming soemthign like string='123' 1-->A,2-->B how can we divide like that i mean in how many ways
+            if(int(s[index:index+2]) < 27):
+                ans1 += recursion(index+2)
+            dp[index] = ans1
+            return ans1
+        return recursion(0)
+
