@@ -395,6 +395,8 @@ class Solution:
                 stack.append(intervals[i])
         return stack
 
+
+intervals=sorted(intervals,key=lambda x:x[0]) # just for reference like how to use key and lamda
             
 
 
