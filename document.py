@@ -381,6 +381,20 @@ class Solution:
         
         return uniquePaths(0,0,set())
 
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        insertIndex=bisect_left(intervals,newInterval) # bisect left will find the index where we can insert and there we are inserting time complexity is logn
+        intervals.insert(insertIndex,newInterval)
+        stack=[intervals[0]]
+        for i in range(1,len(intervals)):
+            if stack[-1][0]<=intervals[i][0]<=stack[-1][1]:
+                stack[-1][0]=stack[-1][0]
+                stack[-1][1]=max(stack[-1][1],intervals[i][1])
+            else:
+                stack.append(intervals[i])
+        return stack
+
             
 
 
