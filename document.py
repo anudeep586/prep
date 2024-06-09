@@ -398,5 +398,19 @@ class Solution:
 
 intervals=sorted(intervals,key=lambda x:x[0]) # just for reference like how to use key and lamda
             
-
+class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        count=0
+        prefix_sum=0
+        prefix_map={0:1}
+        # here first we are checking whether that reminder existed or not if it exist if merge those numbers we get reminder 0 thats logic ,mainly if remainder already increase increase the map and count says these many subarrys aexisted
+        for i in nums:
+            prefix_sum+=i
+            mod=prefix_sum%k
+            if mod in prefix_map:
+                count+=prefix_map[mod]
+                prefix_map[mod]+=1
+            else:
+                prefix_map[mod]=1
+        return count
 
