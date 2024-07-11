@@ -445,3 +445,19 @@ class Solution:
                 start+=1
             max_len=max(max_len,end-start+1)
         return max_len
+
+#below problem is very good
+class Solution:
+    def reverseParentheses(self, s: str) -> str:
+        stack=[]
+        for i in s:
+            temp=[]
+            if i==')':
+                #at each level inverse the stack and put it back
+                while stack and stack[-1]!='(':
+                    temp.append(stack.pop())
+                stack.pop()
+                stack.extend(temp)
+            else:
+                stack.append(i)
+        return ''.join(stack)
