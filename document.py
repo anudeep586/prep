@@ -474,6 +474,7 @@ class Solution:
 # [2,6]=[0,6]-[0,1]
 # [2,6]=5-9=-4
 # [I,j]=[j]-[I]
+# watch love babar for prefix sum and neetcode
 
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
