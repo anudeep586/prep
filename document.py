@@ -461,3 +461,16 @@ class Solution:
             else:
                 stack.append(i)
         return ''.join(stack)
+
+
+# prefix sum
+
+# [6,3,-2,4,-1,0,-5]
+
+# Sum between [0,6]=sumbetween[0,1]+[2,6]
+
+# [6,9,7,11,10,10,5]
+
+# [2,6]=[0,6]-[0,1]
+# [2,6]=5-9=-4
+# [I,j]=[j]-[I]
