@@ -479,7 +479,7 @@ class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
         prefixsum=c=0
         d=dict()
-        d[0]=1 #For the condition when prefixsum = k
+        d[0]=1 #For the condition when prefixsum = k here we are storing each position sum from 0, to that position
         for i in nums:
             prefixsum+=i
             if prefixsum-k in d:# here we are doing we are checking is the there in any subarray with this value already if it is there we can remove it and which means we find one subarray like thi
