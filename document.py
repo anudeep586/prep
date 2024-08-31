@@ -502,6 +502,47 @@ while queue:
             queue.append(n)
 return probabilities[end] 
 
+class Solution:
+    def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start: int, end: int) -> float:
+        graph = defaultdict(list)
+        heap=[(0,start)]
+        heapq.heapify(heap)
+        for i, (a, b) in enumerate(edges):
+            graph[a].append([b, i])
+            graph[b].append([a, i])
+        probabilities=[0.0]*n
+        probabilities[start] = 1.0
+        while heap:
+            we,node=heapq.heappop(heap)
+            for n,i in graph.get(node,[]):
+                if probabilities[node]*succProb[i]>probabilities[n]:
+                    probabilities[n] = probabilities[node] * succProb[i]
+                    heapq.heappush(heap,(-probabilities[n],n))
+        return probabilities[end]
+        
+        
+        # probabilities = [0.0] * n
+        # probabilities[start] = 1.0
+        # while queue:
+        #     current = queue.popleft()
+        #     for neighbor, i in graph.get(current, []):
+        #         if probabilities[current] * succProb[i] > probabilities[neighbor]:
+        #             probabilities[neighbor] = probabilities[current] * succProb[i]
+        #             queue.append(neighbor)
+        # return probabilities[end]
+        # probabilities=[0.0]*n
+        # probabilities[start] = 1.0
+        # while queue:
+        #     k=queue.popleft()
+        #     for n,i in graph.get(k,[]):
+        #         if probabilities[k]*succProb[i]>probabilities[n]:
+        #             probabilities[n]=probabilities[k]*succProb[i]
+        #             queue.append(n)
+        # return probabilities[end]
+
+
+
+
 
 def dijktras():
     pq = [(0, source)]
