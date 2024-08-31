@@ -489,4 +489,30 @@ class Solution:
                 d[prefixsum]+=1
             else:
                 d[prefixsum]=1
-        return c                
+        return c 
+
+# dihkstra
+probabilities=[0.0]*n #first we need something like the array which we will put probabilities every where
+probabilities[start] = 1.0
+while queue:
+    k=queue.popleft()
+    for n,i in graph.get(k,[]):
+        if probabilities[k]*succProb[i]>probabilities[n]:
+            probabilities[n]=probabilities[k]*succProb[i]
+            queue.append(n)
+return probabilities[end] 
+
+
+def dijktras():
+    pq = [(0, source)]
+    heapq.heapify(pq)
+    min_dist = [math.inf] * n
+    min_dist[source] = 0
+
+    while pq:
+        wei, node = heapq.heappop(pq)
+        for v, w in graph[node]:
+            if (wei + w) < min_dist[v]:
+                min_dist[v] = wei + w
+                heapq.heappush(pq, (min_dist[v], v))
+    return min_dist[destination]              
