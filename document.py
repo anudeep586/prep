@@ -556,4 +556,30 @@ def dijktras():
             if (wei + w) < min_dist[v]:
                 min_dist[v] = wei + w
                 heapq.heappush(pq, (min_dist[v], v))
-    return min_dist[destination]              
+    return min_dist[destination]  
+
+
+class Solution:
+    def canFinish(self, numCourses: int, p: List[List[int]]) -> bool:
+        inDegrees=[0]*numCourses
+        dic=defaultdict(list)
+        for i,j in p:
+            dic[j].append(i)
+            inDegrees[i]+=1 # here we should keep on track how many courses we need to do this is important
+        coursesStu=[]
+        for i in range(numCourses):
+            if inDegrees[i]==0:
+                coursesStu.append(i)
+        if coursesStu==[]:
+            return False
+        while coursesStu:
+            c=coursesStu.pop(0)
+            for i in dic[c]:
+                inDegrees[i]-=1
+                if inDegrees[i]==0:
+                    coursesStu.append(i)
+        if sum(inDegrees)==0:
+            return True
+        return False
+
+            
